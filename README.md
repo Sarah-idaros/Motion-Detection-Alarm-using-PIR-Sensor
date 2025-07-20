@@ -41,51 +41,31 @@ This project uses a PIR motion sensor to detect movement and trigger both an LED
 
 cpp
 int pirPin = 2;       // PIR sensor output pin
-
-int ledPin = 3;       // LED pin 
+int ledPin = 3;       // LED pin
 int buzzerPin = 4;    // Buzzer pin
 
-
 void setup() {
-
   pinMode(pirPin, INPUT);
-  
   pinMode(ledPin, OUTPUT);
-  
   pinMode(buzzerPin, OUTPUT);
-  
   Serial.begin(9600);
 }
 
-
 void loop() {
-
   int motion = digitalRead(pirPin);
 
-  
   if (motion == HIGH) {
-  
     Serial.println("Motion Detected!");
-    
     digitalWrite(ledPin, HIGH);
-    
     digitalWrite(buzzerPin, HIGH);
-    
     delay(2000); // Alert duration
-  } 
- 
-  else {
-  
+  } else {
     digitalWrite(ledPin, LOW);
-    
     digitalWrite(buzzerPin, LOW);
   }
-  
 
-  
   delay(100);
 }
-
 
 
 ---
