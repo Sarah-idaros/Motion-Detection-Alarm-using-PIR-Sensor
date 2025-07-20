@@ -1,103 +1,100 @@
-# Motion-Detection-Alarm-using-PIR-Sensor
+# 🔔 PIR Motion Detection Alarm
 
-This project demonstrates a simple motion detection alarm system. When the PIR sensor detects motion, the system turns on an LED and a buzzer for a short period to indicate movement.
-
-
----
-
-🧰 Components Used
-
-Arduino board (Uno, Nano, etc.)
-
-PIR Motion Sensor
-
-LED
-
-220Ω Resistor
-
-Active Buzzer
-
-Breadboard
-
-Jumper wires
-
-
+This project uses a PIR motion sensor to detect movement and trigger both an LED and a buzzer as an alert system.
 
 ---
 
-⚡ Wiring Guide
+## 🧰 Components Used
 
-Component	Arduino Pin	Description
-
-PIR Sensor VCC	5V	Power supply
-PIR Sensor GND	GND	Ground
-PIR Sensor OUT	D2	Motion detection signal
-LED Anode (+)	D3 via 220Ω	Connect through a 220Ω resistor
-LED Cathode (-)	GND	Ground
-Buzzer (+)	D4	Buzzer control signal
-Buzzer (-)	GND	Ground
-
-
-> 💡 Note: Use a 220Ω resistor in series with the LED anode.
-
-
-
+- Arduino board (Uno, Nano, etc.)
+- PIR Motion Sensor
+- LED
+- 200Ω Resistor
+- Active Buzzer
+- Breadboard
+- Jumper wires
 
 ---
 
-🖼 Circuit Diagram
+## 📷 Circuit Diagram
 
 
-![Circuit Diagram](./motion-alarm-circuit.png)
+![Circuit Diagram](motion-alarm-circuit.png)
 
+
+
+## 🔌 Wiring Guide
+
+| *Component*     | *Arduino Pin* | *Details*                  |
+|-------------------|------------------|-------------------------------|
+| PIR Sensor VCC    | 5V               | Power                         |
+| PIR Sensor GND    | GND              | Ground                        |
+| PIR Sensor OUT    | D2               | Motion signal pin             |
+| LED Anode (+)     | D3               | Through 220Ω resistor         |
+| LED Cathode (–)   | GND              | Connect to Ground             |
+| Buzzer (+)        | D4               | Positive terminal             |
+| Buzzer (–)        | GND              | Connect to Ground             |
 
 ---
 
-🧾 Arduino Code
+## 🔁 Code
 
-int pirPin = 2;       // PIR sensor connected to digital pin 2
-int ledPin = 3;       // LED connected to digital pin 3
-int buzzerPin = 4;    // Buzzer connected to digital pin 4
+cpp
+int pirPin = 2;       // PIR sensor output pin
+
+int ledPin = 3;       // LED pin 
+int buzzerPin = 4;    // Buzzer pin
+
 
 void setup() {
+
   pinMode(pirPin, INPUT);
+  
   pinMode(ledPin, OUTPUT);
+  
   pinMode(buzzerPin, OUTPUT);
+  
   Serial.begin(9600);
 }
 
+
 void loop() {
+
   int motion = digitalRead(pirPin);
 
+  
   if (motion == HIGH) {
+  
     Serial.println("Motion Detected!");
+    
     digitalWrite(ledPin, HIGH);
+    
     digitalWrite(buzzerPin, HIGH);
-    delay(2000); // Keep alarm on for 2 seconds
-  } else {
+    
+    delay(2000); // Alert duration
+  } 
+ 
+  else {
+  
     digitalWrite(ledPin, LOW);
+    
     digitalWrite(buzzerPin, LOW);
   }
+  
 
+  
   delay(100);
 }
 
 
+
 ---
 
-▶ How to Use
+## 🛠 How It Works
 
-1. Build the circuit using the wiring table above.
-
-
-2. Upload the provided code to your Arduino.
+- When motion is detected by the PIR sensor, the LED and buzzer are activated for 2 seconds.
+- The Serial Monitor displays a message each time motion is detected.
 
 
-3. Open the Serial Monitor to observe motion logs.
-
-
-4. When motion is detected, the LED and buzzer turn on for 2 seconds.
-
-
-
+---
 
